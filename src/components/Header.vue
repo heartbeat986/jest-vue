@@ -1,14 +1,25 @@
 <template>
   <div class="header">
-      <input data-test="input" />
+    <input data-test="input" v-model="inputValue" @keyup.enter="changeValue" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Header',
-  props: {
-
+  props: {},
+  data() {
+    return {
+      inputValue: '',
+    };
+  },
+  methods: {
+    changeValue() {
+      if (this.inputValue) {
+        this.$emit('add', this.inputValue);
+        this.inputValue = '';
+      }
+    },
   },
 };
 </script>
